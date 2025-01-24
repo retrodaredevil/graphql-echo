@@ -1,6 +1,7 @@
 # graphql-echo
 A simple GraphQL server with queries that allow the easy testing of your GraphQL clients.
 
+Motivation: https://github.com/wildmountainfarms/wild-graphql-datasource/issues/10
 
 ## Running yourself
 

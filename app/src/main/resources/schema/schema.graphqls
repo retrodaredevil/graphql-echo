@@ -1,8 +1,8 @@
 type Query {
-    shows(titleFilter: String): [Show]
+    echoHttpHeaders: [HeaderEntry]
 }
 
-type Show {
-    title: String!
-    releaseYear: Int!
+type HeaderEntry {
+    name: String!
+    values: [String!]!
 }
