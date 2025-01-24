@@ -4,6 +4,7 @@ plugins {
 
 	id("org.springframework.boot") version "3.4.2"
 	id("io.spring.dependency-management") version "1.1.7"
+	// https://github.com/Netflix/dgs-codegen/releases/tag/v7.0.3
 	id("com.netflix.dgs.codegen") version "7.0.3"
 }
 
