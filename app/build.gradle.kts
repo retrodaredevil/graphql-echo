@@ -27,7 +27,10 @@ dependencyManagement {
 }
 
 tasks.generateJava {
-	schemaPaths.add("${projectDir}/src/main/resources/graphql-client")
+    // More info here: https://netflix.github.io/dgs/generating-code-from-schema/
+    // The main downside of DGS is that it always generates POJOs with setters (I don't like mutable objects)
+
+	schemaPaths.add("${projectDir}/src/main/resources/schema")
 	packageName = "me.retrodaredevil.graphqlecho.codegen"
-	generateClient = true
+	generateClient = false // we just need the data types generated
 }
