@@ -10,11 +10,17 @@ Motivation: https://github.com/wildmountainfarms/wild-graphql-datasource/issues/
 
 ## How this project was made
 
-* https://netflix.github.io/dgs/
-    * You will use this: https://start.spring.io/
-* https://netflix.github.io/dgs/generating-code-from-schema/
-  * You will reference this guide for generating code and understanding how it works.
-  * Keep in mind that this guide is designed for client libraries, but we are making a server. Not everything here applies to it.
+* https://docs.spring.io/spring-boot/reference/web/spring-graphql.html
+  * You will use this: https://start.spring.io/
+
+## Design Decisions
+
+* Language: I knew I wanted to build this with Java or Kotlin, as they are the languages I most enjoy working with. I chose Java because I wanted to experiment with all the feature so of modern Java versions.
+* Framework: Spring is the obvious choice, but what to put on top of it?
+  * [DGS (by Netflix)](https://netflix.github.io/dgs/) - the first working version of GraphQL Echo uses this. I chose it because it had [codegen support](https://netflix.github.io/dgs/generating-code-from-schema/)
+    * I chose not to use this because its codegen support was not as good as I had hoped, and DGS feels kind of deprecated in favor of Spring for GraphQL.
+    * If I needed a client library, I probably would have chosen to use this and its codegen support
+  * [Spring for GraphQL](https://spring.io/projects/spring-graphql) - great integration with Spring and well supported
 
 ## IDE Setup
 

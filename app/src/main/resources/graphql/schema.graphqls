@@ -1,0 +1,21 @@
+type Query {
+    echoHttpHeaders: HeaderResponse!
+}
+
+type HeaderResponse {
+    "Gets the header values for the given header name or returns null if that header is not present"
+    getHeaderMulti(name: String!): [String!]
+    "Gets the header value for the given header name and expects it to not be a multi header or returns null if that header is not present"
+    getHeader(name: String!): String
+    "Gets and expects the header values for the given header name"
+    expectHeaderMulti(name: String!): [String!]!
+    "Gets and expects a single header value for the given header name"
+    expectHeader(name: String!): String!
+
+    entries: [HeaderEntry!]!
+}
+
+type HeaderEntry {
+    name: String!
+    values: [String!]!
+}

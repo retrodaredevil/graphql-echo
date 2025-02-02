@@ -1,8 +1,0 @@
-type Query {
-    echoHttpHeaders: [HeaderEntry]
-}
-
-type HeaderEntry {
-    name: String!
-    values: [String!]!
-}
