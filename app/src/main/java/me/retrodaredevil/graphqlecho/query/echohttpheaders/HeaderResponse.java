@@ -3,6 +3,9 @@ package me.retrodaredevil.graphqlecho.query.echohttpheaders;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @param entryMap a map representing the headers. This implementation of map has <strong>case-insensitive</strong> keys. Please keep that in mind when using it!
+ */
 public record HeaderResponse(
 		Map<String, ? extends List<String>> entryMap
 ) {
