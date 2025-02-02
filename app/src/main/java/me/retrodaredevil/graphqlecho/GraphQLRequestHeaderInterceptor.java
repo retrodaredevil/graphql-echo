@@ -17,13 +17,14 @@ import java.util.Map;
  */
 @Component
 public class GraphQLRequestHeaderInterceptor implements WebGraphQlInterceptor {
-	public static String CONTEXT_KEY_HEADER_MAP = GraphQLRequestHeaderInterceptor.class.getCanonicalName() + ".headerMap";
+	/** The key for the GraphQL Context to retrieve the {@link HttpHeaders} of the request */
+	public static final String CONTEXT_KEY_HTTP_HEADERS = GraphQLRequestHeaderInterceptor.class.getCanonicalName() + ".httpHeaders";
 
 	@Override
 	public @NotNull Mono<WebGraphQlResponse> intercept(WebGraphQlRequest request, Chain chain) {
 		HttpHeaders headers = request.getHeaders();
 		request.configureExecutionInput((executionInput, builder) -> builder.graphQLContext(Map.of(
-				CONTEXT_KEY_HEADER_MAP, headers
+				CONTEXT_KEY_HTTP_HEADERS, headers
 		)).build());
         return chain.next(request);
 	}

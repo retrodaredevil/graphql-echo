@@ -50,15 +50,15 @@ public record HeaderResponse(
 
 	Ok, wait again.
 	So I totally could change it to a class and have a getter for how it need to be for the GraphQL mapped data.
-	It just didn't seem like there was a way to use schema mappings directly inside this class, which is why a bunch of hte logic is in HeaderResponseMapping.
+	It just didn't seem like there was a way to use schema mappings directly inside this class, which is why a bunch of the logic is in HeaderResponseMapping.
 	I mean, the idea is that the data lives in this class...
 
 	Alright, I don't know.
-	I'm so indicisive on the record thing.
+	I'm so indecisive on the record thing.
 	This is a record.
 	Maybe that will change in the future.
 	I love modern Java versions.
-	I spend so much time decising which new features to use and not use.
+	I spend so much time deciding which new features to use and not use.
 	It's my favorite! /s
 
 	Ok, but I do like records.

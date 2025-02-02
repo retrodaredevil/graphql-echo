@@ -1,5 +1,10 @@
 package me.retrodaredevil.graphqlecho.query.exception;
 
+import graphql.ErrorClassification;
+import org.jetbrains.annotations.NotNull;
+
+import static java.util.Objects.requireNonNull;
+
 public class QueryException extends Exception {
 	/*
 	Another random thought, on a random Saturday at 8:30 PM:
@@ -19,7 +24,14 @@ public class QueryException extends Exception {
 	I'm going to try this as a checked exception first, and maybe I'll change that later.
 	 */
 
-	public QueryException(String message) {
-		super(message);
+	private final @NotNull ErrorClassification errorClassification;
+
+	public QueryException(@NotNull String message, @NotNull ErrorClassification errorClassification) {
+		super(requireNonNull(message));
+		this.errorClassification = requireNonNull(errorClassification);
+	}
+
+	public @NotNull ErrorClassification getErrorClassification() {
+		return errorClassification;
 	}
 }

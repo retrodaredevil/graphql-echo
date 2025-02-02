@@ -1,7 +1,9 @@
 type Query {
+    "Returns a response that allows you to retrieve all HTTP headers present on this request. Also allows you to get specific headers or return an error if a particular header is not present."
     echoHttpHeaders: HeaderResponse!
 }
 
+"This response contains many different fields to get and expect (assert) that certain headers are present."
 type HeaderResponse {
     "Gets the header values for the given header name or returns null if that header is not present"
     getHeaderMulti(name: String!): [String!]
