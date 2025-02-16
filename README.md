@@ -27,7 +27,7 @@ Install plugins:
 * https://plugins.jetbrains.com/plugin/17852-dgs
 * https://plugins.jetbrains.com/plugin/22807-spring-graphql
 
-## Building
+## Building locally
 
 Building the project is as simple as understanding what Gradle tasks you need to call.
 Typically, you might want to test building the docker image.
