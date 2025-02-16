@@ -83,17 +83,15 @@ jobs:
           tags=$(echo "${{ steps.meta.outputs.tags }}" | tr '\n' ' ')
           
           primary_tag=$(echo $tags | awk '{print $1}')
-          manifest_name="$primary_tag"
+          manifest_name="${primary_tag%:*}"  # basically just extract the image name (remove the tag)
           docker manifest create "$manifest_name"  \
             --amend ${{ env.LOCAL_IMAGE_REF_PREFIX }}-amd64 \
             --amend ${{ env.LOCAL_IMAGE_REF_PREFIX }}-arm64
           
           for tag in $tags; do
-            if [[ "$tag" != "$primary_tag" ]]; then
-              docker manifest annotate "$manifest_name" "$tag"
-            fi
+            docker manifest annotate "$manifest_name" "$tag"
           done
           
           # https://docs.docker.com/reference/cli/docker/manifest/push/
-          docker manifest push "$primary_tag"
+          docker manifest push "$manifest_name"
 
