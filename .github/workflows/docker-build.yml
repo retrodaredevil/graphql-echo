@@ -85,6 +85,9 @@ jobs:
           primary_tag=$(echo $tags | awk '{print $1}')
           manifest_name="${primary_tag%:*}"  # basically just extract the image name (remove the tag)
           echo "Manifest name is $manifest_name"
+          echo "Local docker images:"
+          docker images
+          echo "Creating manifest"
           docker manifest create "$manifest_name"  \
             --amend ${{ env.LOCAL_IMAGE_REF_PREFIX }}-amd64 \
             --amend ${{ env.LOCAL_IMAGE_REF_PREFIX }}-arm64
