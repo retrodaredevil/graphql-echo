@@ -3,15 +3,12 @@ A simple GraphQL server with queries that allow the easy testing of your GraphQL
 
 Motivation: https://github.com/wildmountainfarms/wild-graphql-datasource/issues/10
 
-## Running yourself
-
-* Run `GraphQLEchoApplication` in IntelliJ, or run the `:app:bootRun` gradle task in your terminal
-* Navigate to http://localhost:8080/graphiql?path=/graphql to test the endpoint
 
 ## How this project was made
 
 * https://docs.spring.io/spring-boot/reference/web/spring-graphql.html
   * You will use this: https://start.spring.io/
+* Building container images: https://docs.spring.io/spring-boot/reference/packaging/container-images/index.html
 
 ## Design Decisions
 
@@ -29,3 +26,27 @@ Motivation: https://github.com/wildmountainfarms/wild-graphql-datasource/issues/
 Install plugins:
 * https://plugins.jetbrains.com/plugin/17852-dgs
 * https://plugins.jetbrains.com/plugin/22807-spring-graphql
+
+## Building
+
+Building the project is as simple as understanding what Gradle tasks you need to call.
+Typically, you might want to test building the docker image.
+You can build the docker image like so:
+
+```shell
+./gradlew bootBuildImage -Pplatform=linux/amd64
+```
+
+Note that you may need to run these commands for multiplatform building:
+```shell
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+docker buildx create --name multiarch-builder --use --bootstrap --driver docker-container
+
+# Confirm available platforms with:
+docker buildx inspect --bootstrap
+```
+
+## Running Locally
+
+* Run `GraphQLEchoApplication` in IntelliJ, or run the `:app:bootRun` gradle task in your terminal
+* Navigate to http://localhost:8080/graphiql?path=/graphql to test the endpoint

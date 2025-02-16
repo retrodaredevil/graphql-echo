@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class RootQueryController {
 
-//	public @NotNull HeaderResponse echoHttpHeaders(@RequestHeader MultiValueMap<String, String> headers) {
 	@QueryMapping
 	public @NotNull HeaderResponse echoHttpHeaders(DataFetchingEnvironment env) {
 		HttpHeaders headers = env.getGraphQlContext().get(GraphQLRequestHeaderInterceptor.CONTEXT_KEY_HTTP_HEADERS);

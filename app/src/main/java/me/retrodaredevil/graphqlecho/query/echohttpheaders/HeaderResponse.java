@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Represents data necessary to respond to an echoHttpHeaders query.
+ * Logic for how that data is returned is present in {@link HeaderResponseMapping}
+ *
  * @param entryMap a map representing the headers. This implementation of map has <strong>case-insensitive</strong> keys. Please keep that in mind when using it!
  */
 public record HeaderResponse(
