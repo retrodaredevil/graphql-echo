@@ -84,14 +84,19 @@ jobs:
           
           primary_tag=$(echo $tags | awk '{print $1}')
           manifest_name="${primary_tag%:*}"  # basically just extract the image name (remove the tag)
+          echo "Manifest name is $manifest_name"
           docker manifest create "$manifest_name"  \
             --amend ${{ env.LOCAL_IMAGE_REF_PREFIX }}-amd64 \
             --amend ${{ env.LOCAL_IMAGE_REF_PREFIX }}-arm64
+          echo "Successfully created a manifest"
           
           for tag in $tags; do
+            echo "Annotating $tag"
             docker manifest annotate "$manifest_name" "$tag"
+            echo "Success"
           done
           
+          echo "Gonna push now"
           # https://docs.docker.com/reference/cli/docker/manifest/push/
           docker manifest push "$manifest_name"
 
