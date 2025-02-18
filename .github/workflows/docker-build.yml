@@ -76,25 +76,17 @@ jobs:
         run: echo "imageRefs=${{ matrix.data.image-ref }}" >> "$GITHUB_OUTPUT"
 
   manifest-tag-push:
-#    needs: build-push
+    needs: build-push
     runs-on: ubuntu-24.04
     permissions:
       contents: read
       packages: write
 
     env:
-      IMAGE_REFS: ("ghcr.io/retrodaredevil/graphql-echo:sha-${{ github.sha }}-amd64" "ghcr.io/retrodaredevil/graphql-echo:sha-${{ github.sha }}-arm64")
+      # IMAGE_REFS is a space-delimited list of image references that should already have been published to our registry
+      IMAGE_REFS: "ghcr.io/retrodaredevil/graphql-echo:sha-${{ github.sha }}-amd64" "ghcr.io/retrodaredevil/graphql-echo:sha-${{ github.sha }}-arm64"
 
     steps:
-      - name: Loop through images
-        run: |
-          for img in $IMAGE_REFS; do
-            echo "Processing image: $img"
-          done
-      - name: Fail The Job
-        run: |
-          echo "For the time being, this is all I want to run in the pipeline"
-          false
       # https://github.com/marketplace/actions/checkout
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -144,9 +136,13 @@ jobs:
           echo "Local docker images:"
           docker images
           echo "Creating manifest"
-          #docker manifest create "$manifest_name"  \
-          #  --amend TODO-amd64 \
-          #  --amend TODO-arm64
+          manifest_command=("docker" "manifest" "create" "$manifest_name")
+          for image in $IMAGE_REFS; do
+            manifest_command+=("--amend" "$image")
+          done
+          echo "We will execute this manifest create command:"
+          echo "${command[@]}"
+          "${command[@]}"
           echo "Successfully created a manifest"
           
           for tag in $tags; do
