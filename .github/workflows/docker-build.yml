@@ -126,25 +126,18 @@ jobs:
           # The tags variable is meant to be used without quoting in commands
           tags=$(echo "${{ steps.meta.outputs.tags }}" | tr '\n' ' ')
           
-          primary_tag=$(echo $tags | awk '{print $1}')
-          manifest_name="${primary_tag%:*}"  # basically just extract the image name (remove the tag)
-          echo "Manifest name is $manifest_name"
-          echo "Creating manifest"
-          manifest_command=("docker" "manifest" "create" "$manifest_name")
-          for image in $IMAGE_REFS; do
-            manifest_command+=("--amend" "$image")
+          for tag in $tags; do
+            echo "Creating manifest for tag $tag"
+            manifest_command=("docker" "manifest" "create" "$manifest_name")
+            for image in $IMAGE_REFS; do
+              manifest_command+=("--amend" "$image")
+            done
+            echo "We will execute this manifest create command:"
+            echo "${manifest_command[@]}"
+            "${manifest_command[@]}"
+            echo "Successfully created a manifest"
+            
+            # https://docs.docker.com/reference/cli/docker/manifest/push/
+            docker manifest push "$manifest_name"
+            echo "Successfully pushed tag $tag"
           done
-          echo "We will execute this manifest create command:"
-          echo "${manifest_command[@]}"
-          "${manifest_command[@]}"
-          echo "Successfully created a manifest"
-          
-          #for tag in $tags; do
-          #  echo "Annotating $tag"
-          #  docker manifest annotate "$manifest_name" "$tag"
-          #  echo "Success"
-          #done
-          
-          echo "Gonna push now"
-          # https://docs.docker.com/reference/cli/docker/manifest/push/
-          docker manifest push "$manifest_name"
