@@ -139,11 +139,11 @@ jobs:
           "${manifest_command[@]}"
           echo "Successfully created a manifest"
           
-          for tag in $tags; do
-            echo "Annotating $tag"
-            docker manifest annotate "$manifest_name" "$tag"
-            echo "Success"
-          done
+          #for tag in $tags; do
+          #  echo "Annotating $tag"
+          #  docker manifest annotate "$manifest_name" "$tag"
+          #  echo "Success"
+          #done
           
           echo "Gonna push now"
           # https://docs.docker.com/reference/cli/docker/manifest/push/
