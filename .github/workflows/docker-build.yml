@@ -21,10 +21,16 @@ jobs:
       contents: read
       packages: write
 
+    outputs:
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
+
     strategy:
       matrix:
         data:
           # TODO it might be worth randomizing the image-ref, as if identical pipelines run against the same commit, there's a race condition
+          # NOTE: We cannot easily set each image-ref as an output of this matrix job and use it in the next job https://github.com/orgs/community/discussions/17245
+          #   Because of this, we are duplicating the image-ref constants in the manifest-tag-push job. Update these constants there if necessary.
           - platform: "linux/amd64"
             platform-short: "amd64"
             image-ref: "ghcr.io/retrodaredevil/graphql-echo:sha-${{ github.sha }}-amd64"
@@ -70,18 +76,19 @@ jobs:
         run: echo "imageRefs=${{ matrix.data.image-ref }}" >> "$GITHUB_OUTPUT"
 
   manifest-tag-push:
-    needs: build-push
+#    needs: build-push
     runs-on: ubuntu-24.04
     permissions:
       contents: read
       packages: write
 
+    env:
+      IMAGE_REFS: ("ghcr.io/retrodaredevil/graphql-echo:sha-${{ github.sha }}-amd64" "ghcr.io/retrodaredevil/graphql-echo:sha-${{ github.sha }}-arm64")
+
     steps:
       - name: Loop through images
         run: |
-          imageRefs="${{ needs.build-push.outputs.imageRefs }}"
-          
-          for img in $imageRefs; do
+          for img in $IMAGE_REFS; do
             echo "Processing image: $img"
           done
       - name: Fail The Job
