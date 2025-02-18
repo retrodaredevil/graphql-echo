@@ -84,7 +84,7 @@ jobs:
 
     env:
       # IMAGE_REFS is a space-delimited list of image references that should already have been published to our registry
-      IMAGE_REFS: "ghcr.io/retrodaredevil/graphql-echo:sha-${{ github.sha }}-amd64" "ghcr.io/retrodaredevil/graphql-echo:sha-${{ github.sha }}-arm64"
+      IMAGE_REFS: "ghcr.io/retrodaredevil/graphql-echo:sha-${{ github.sha }}-amd64 ghcr.io/retrodaredevil/graphql-echo:sha-${{ github.sha }}-arm64"
 
     steps:
       # https://github.com/marketplace/actions/checkout
