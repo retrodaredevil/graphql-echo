@@ -67,7 +67,7 @@ jobs:
 
       # Collect the image references so that we don't have to duplicate the constants we have defined in the matrix step
       - name: Collect image references
-        run: echo "imageRefs=${{ matrix.data.image-ref }}" >> "$GITHUB_ENV"
+        run: echo "imageRefs=${{ matrix.data.image-ref }}" >> "$GITHUB_OUTPUT"
 
   manifest-tag-push:
     needs: build-push
