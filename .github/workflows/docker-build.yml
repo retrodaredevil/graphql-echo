@@ -128,7 +128,7 @@ jobs:
           
           for tag in $tags; do
             echo "Creating manifest for tag $tag"
-            manifest_command=("docker" "manifest" "create" "$manifest_name")
+            manifest_command=("docker" "manifest" "create" "$tag")
             for image in $IMAGE_REFS; do
               manifest_command+=("--amend" "$image")
             done
@@ -138,6 +138,6 @@ jobs:
             echo "Successfully created a manifest"
             
             # https://docs.docker.com/reference/cli/docker/manifest/push/
-            docker manifest push "$manifest_name"
+            docker manifest push "$tag"
             echo "Successfully pushed tag $tag"
           done
