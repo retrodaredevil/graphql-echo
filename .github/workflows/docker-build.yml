@@ -21,10 +21,6 @@ jobs:
       contents: read
       packages: write
 
-    outputs:
-      output1: ${{ steps.step1.outputs.test }}
-      output2: ${{ steps.step2.outputs.test }}
-
     strategy:
       matrix:
         data:
@@ -133,16 +129,14 @@ jobs:
           primary_tag=$(echo $tags | awk '{print $1}')
           manifest_name="${primary_tag%:*}"  # basically just extract the image name (remove the tag)
           echo "Manifest name is $manifest_name"
-          echo "Local docker images:"
-          docker images
           echo "Creating manifest"
           manifest_command=("docker" "manifest" "create" "$manifest_name")
           for image in $IMAGE_REFS; do
             manifest_command+=("--amend" "$image")
           done
           echo "We will execute this manifest create command:"
-          echo "${command[@]}"
-          "${command[@]}"
+          echo "${manifest_command[@]}"
+          "${manifest_command[@]}"
           echo "Successfully created a manifest"
           
           for tag in $tags; do
