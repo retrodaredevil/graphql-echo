@@ -46,6 +46,17 @@ docker buildx create --name multiarch-builder --use --bootstrap --driver docker-
 docker buildx inspect --bootstrap
 ```
 
+To combine the images, play around with `docker manifest create`.
+
+```shell
+# This command is used as a reference, and not something for you to run exactly as is
+# https://docs.docker.com/reference/cli/docker/manifest/#working-with-insecure-registries
+# Note --insecure is required whenever any image ref is pointing to a http registry
+# Note that each image reference will be referred to via its registry, so you cannot reference local images here
+# Note that all image references must be from the same registry
+docker manifest create --insecure localhost:5000/asdf/asdf:latest --amend localhost:5000/asdf/asdf:arm   --amend localhost:5000/asdf/asdf:amd
+```
+
 ## Running Locally
 
 * Run `GraphQLEchoApplication` in IntelliJ, or run the `:app:bootRun` gradle task in your terminal

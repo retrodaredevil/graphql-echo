@@ -50,6 +50,11 @@ tasks.named<BootBuildImage>("bootBuildImage") {
         imagePlatform.set(desiredPlatform)
     }
 
+
+    // Adding labels: https://stackoverflow.com/questions/66585031/configure-custom-container-image-label-using-cloud-native-build-packs-paketo-io
+    //   TODO: add custom labels https://paketo.io/docs/howto/configuration/#applying-custom-labels
+//    environment // BP_IMAGE_LABELS
+
     // We don't specify any registry options because we're not the ones handling pushing to a registry or tagging the image
 //    docker {
 //        publishRegistry {
