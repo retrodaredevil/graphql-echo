@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class HeaderResponseMapping {
 
 	@SchemaMapping
-	@NotNull List<@NotNull HeaderEntry> entries(HeaderResponse element) {
+	public @NotNull List<@NotNull HeaderEntry> entries(HeaderResponse element) {
 		return element.entryMap().entrySet().stream().map(e -> new HeaderEntry(e.getKey(), e.getValue())).collect(Collectors.toList());
 	}
 

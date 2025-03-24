@@ -20,6 +20,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-graphql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
+    // https://github.com/graphql-java/graphql-java-extended-scalars/releases
+    implementation("com.graphql-java:graphql-java-extended-scalars:22.0")
+
     // https://github.com/uber/NullAway/releases
     errorprone(libs.errorprone.core)
     errorprone(libs.nullaway)

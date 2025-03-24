@@ -1,7 +1,12 @@
 type Query {
     "Returns a response that allows you to retrieve all HTTP headers present on this request. Also allows you to get specific headers or return an error if a particular header is not present."
     echoHttpHeaders: HeaderResponse!
+
+    generateDummyTimeseries(from: Long!, to: Long!, nodeCount: Int, processorCount: Int, datapointCount: Int): DummyTimeseriesResponse!
 }
+
+"A 64-bit signed integer"
+scalar Long
 
 "This response contains many different fields to get and expect (assert) that certain headers are present."
 type HeaderResponse {
@@ -20,4 +25,24 @@ type HeaderResponse {
 type HeaderEntry {
     name: String!
     values: [String!]!
+}
+
+type DummyTimeseriesResponse {
+    serverName: String!
+    nodeData: [DummyTimeseriesNodeData!]!
+}
+
+type DummyTimeseriesNodeData {
+    nodeName: String!
+    datapoints: [DummyTimeseriesDatapoint!]!
+}
+type DummyTimeseriesDatapoint {
+    dateMillis: Long!
+    dateEpochSecond: Long!
+    # TODO add other time formats here for testing
+    processorTemperatures: [DummyTimeseriesProcessorTemperature!]!
+}
+type DummyTimeseriesProcessorTemperature {
+    processor: Int!
+    temperatureCelsius: Float!
 }

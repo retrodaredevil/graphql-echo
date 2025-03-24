@@ -121,6 +121,7 @@ jobs:
             org.opencontainers.image.url=https://github.com/retrodaredevil/graphql-echo
             org.opencontainers.image.authors=retrodaredevil
 
+      # Good docs about docker manifest: https://www.howtogeek.com/devops/what-is-a-docker-image-manifest/
       - name: Create and push multi-architecture manifest
         run: |
           # The tags variable is meant to be used without quoting in commands
