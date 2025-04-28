@@ -20,6 +20,7 @@ type HeaderResponse {
     expectHeader(name: String!): String!
 
     entries: [HeaderEntry!]!
+    headerNames: [String!]!
 }
 
 type HeaderEntry {
@@ -41,6 +42,7 @@ type DummyTimeseriesDatapoint {
     dateEpochSecond: Long!
     # TODO add other time formats here for testing
     processorTemperatures: [DummyTimeseriesProcessorTemperature!]!
+    processorTemperaturesCelsius: [Float!]!
 }
 type DummyTimeseriesProcessorTemperature {
     processor: Int!

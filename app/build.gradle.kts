@@ -6,7 +6,9 @@ plugins {
 	// java-common-conventions applies java plugin, configs repositories, defines Java version and sets up JUnit
 	id("buildlogic.java-common-conventions")
 
-	id("org.springframework.boot") version "3.4.2"
+    // https://spring.io/projects/spring-boot
+	id("org.springframework.boot") version "3.4.5"
+    // https://docs.spring.io/dependency-management-plugin/docs/current/reference/html/
 	id("io.spring.dependency-management") version "1.1.7"
 
     alias(libs.plugins.errorprone.gradle)

@@ -20,6 +20,11 @@ public class HeaderResponseMapping {
 	}
 
 	@SchemaMapping
+	public @NotNull List<@NotNull String> headerNames(HeaderResponse element) {
+		return element.entryMap().keySet().stream().toList();
+	}
+
+	@SchemaMapping
 	public @Nullable List<@NotNull String> getHeaderMulti(HeaderResponse element, @Argument @NotNull String name) {
 		return element.entryMap().get(name);
 	}

@@ -14,13 +14,13 @@ repositories {
 }
 
 dependencies {
-    constraints {
-        // Define dependency versions as constraints
-        implementation("org.apache.commons:commons-text:1.12.0")
-    }
+//    constraints {
+//        // Define dependency versions as constraints
+//        implementation("org.apache.commons:commons-text:1.12.0")
+//    }
 
-    // Use JUnit Jupiter for testing.
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.3")
+    // Use JUnit Jupiter for testing. https://junit.org/junit5/
+    testImplementation("org.junit.jupiter:junit-jupiter:5.12.2")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
