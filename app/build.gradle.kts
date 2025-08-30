@@ -7,7 +7,7 @@ plugins {
 	id("buildlogic.java-common-conventions")
 
     // https://spring.io/projects/spring-boot
-	id("org.springframework.boot") version "3.4.5"
+	id("org.springframework.boot") version "3.5.5"
     // https://docs.spring.io/dependency-management-plugin/docs/current/reference/html/
 	id("io.spring.dependency-management") version "1.1.7"
 
@@ -23,7 +23,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
     // https://github.com/graphql-java/graphql-java-extended-scalars/releases
-    implementation("com.graphql-java:graphql-java-extended-scalars:22.0")
+    implementation("com.graphql-java:graphql-java-extended-scalars:24.0")
 
     // https://github.com/uber/NullAway/releases
     errorprone(libs.errorprone.core)

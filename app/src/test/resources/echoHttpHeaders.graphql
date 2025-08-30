@@ -1,0 +1,8 @@
+query {
+    echoHttpHeaders {
+        entries {
+            name
+            values
+        }
+    }
+}

@@ -4,9 +4,9 @@
 # Useful documentation: https://developer.android.com/build/migrate-to-catalogs#kts
 
 [versions]
-errorprone-gradle = "4.2.0" # https://github.com/tbroyer/gradle-errorprone-plugin/releases
-errorprone-core = "2.38.0" # https://github.com/google/error-prone/releases
-nullaway = "0.12.6" # https://github.com/uber/NullAway/releases
+errorprone-gradle = "4.3.0" # https://github.com/tbroyer/gradle-errorprone-plugin/releases
+errorprone-core = "2.41.0" # https://github.com/google/error-prone/releases
+nullaway = "0.12.9" # https://github.com/uber/NullAway/releases
 
 [plugins]
 errorprone-gradle = { id = "net.ltgt.errorprone", version.ref = "errorprone-gradle"}

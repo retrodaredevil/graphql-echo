@@ -61,3 +61,12 @@ docker manifest create --insecure localhost:5000/asdf/asdf:latest --amend localh
 
 * Run `GraphQLEchoApplication` in IntelliJ, or run the `:app:bootRun` gradle task in your terminal
 * Navigate to http://localhost:8080/graphiql?path=/graphql to test the endpoint
+
+## Updating Gradle
+
+https://gradle.org/releases/
+
+```shell
+# replace 9.0.0 with your desired version
+./gradlew wrapper --gradle-version=9.0.0 && ./gradlew wrapper
+```
